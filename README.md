@@ -1,33 +1,52 @@
 # opencode-job-done
 
-Quiet voice notification for opencode — says "Job done" when a session goes idle.
+Says **"Job done"** once when a session finishes.
+
+## Requirements
+
+- macOS (uses built-in `say` + `afplay`)
+- opencode >= 1.18
 
 ## Install
 
-**Global (all projects):**
+### Global — all projects (recommended)
+
 ```bash
+git clone https://github.com/hlibr/opencode-job-done.git
 mkdir -p ~/.config/opencode/plugins
-cp job-done.js ~/.config/opencode/plugins/job-done.js
-# or
-cp .opencode/plugins/job-done.js ~/.config/opencode/plugins/
+cp opencode-job-done/job-done.js ~/.config/opencode/plugins/job-done.js
 ```
 
-**Project (this repo):**
-- Plugin is already at `.opencode/plugins/job-done.js` — auto-loaded by opencode.
+Quit and restart opencode.
 
-Restart opencode after install.
+### Per-project
+
+```bash
+mkdir -p .opencode/plugins
+cp /path/to/opencode-job-done/job-done.js .opencode/plugins/job-done.js
+```
+
+Restart opencode.
+
+## Customize
+
+Volume is `afplay -v 0.3` in `job-done.js:6` — scale `0.0` (silent) to `1.0` (full). Edit to taste.
 
 ## How it works
 
-Hooks `session.idle` event and plays quietly:
+`job-done.js:1` exports `JobDonePlugin` and listens for `session.idle`:
 
 ```js
-await $`say -o /tmp/jobdone.aiff "Job done" && afplay -v 0.3 /tmp/jobdone.aiff`
+event: async ({ event }) => {
+  if (event.type === "session.idle") {
+    await $`say -o /tmp/jobdone.aiff "Job done" && afplay -v 0.3 /tmp/jobdone.aiff`
+  }
+}
 ```
 
-`afplay -v 0.3` controls volume (0.0–1.0) without changing system volume.
+See [opencode Plugins — Events](https://opencode.ai/docs/plugins#events).
 
-## Files
+## Layout
 
-- `.opencode/plugins/job-done.js` — project plugin (auto-loaded)
-- `job-done.js` — standalone copy for global install
+- `job-done.js` — source of truth (copy this)
+- `.opencode/plugins/job-done.js` — identical copy, auto-loaded when you open this repo as a project
