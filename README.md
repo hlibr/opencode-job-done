@@ -1,6 +1,6 @@
 # opencode-job-done
 
-Says **"Job done"** when a session finishes.
+Says **"Job done"** when a turn finishes.
 
 ## Requirements
 
