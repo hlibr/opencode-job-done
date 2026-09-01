@@ -1,4 +1,4 @@
-export const SayDonePlugin = async ({ project, client, $, directory, worktree }) => {
+export const JobDonePlugin = async ({ project, client, $, directory, worktree }) => {
   return {
     event: async ({ event }) => {
       if (event.type === "session.idle") {
@@ -10,4 +10,4 @@ export const SayDonePlugin = async ({ project, client, $, directory, worktree })
   }
 }
 
-export default SayDonePlugin
+export default JobDonePlugin

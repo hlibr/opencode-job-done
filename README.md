@@ -1,4 +1,4 @@
-# opencode-say-done
+# opencode-job-done
 
 Quiet voice notification for opencode — says "Job done" when a session goes idle.
 
@@ -7,13 +7,13 @@ Quiet voice notification for opencode — says "Job done" when a session goes id
 **Global (all projects):**
 ```bash
 mkdir -p ~/.config/opencode/plugins
-cp say-done.js ~/.config/opencode/plugins/say-done.js
+cp job-done.js ~/.config/opencode/plugins/job-done.js
 # or
-cp .opencode/plugins/say-done.js ~/.config/opencode/plugins/
+cp .opencode/plugins/job-done.js ~/.config/opencode/plugins/
 ```
 
 **Project (this repo):**
-- Plugin is already at `.opencode/plugins/say-done.js` — auto-loaded by opencode.
+- Plugin is already at `.opencode/plugins/job-done.js` — auto-loaded by opencode.
 
 Restart opencode after install.
 
@@ -29,5 +29,5 @@ await $`say -o /tmp/jobdone.aiff "Job done" && afplay -v 0.3 /tmp/jobdone.aiff`
 
 ## Files
 
-- `.opencode/plugins/say-done.js` — project plugin (auto-loaded)
-- `say-done.js` — standalone copy for global install
+- `.opencode/plugins/job-done.js` — project plugin (auto-loaded)
+- `job-done.js` — standalone copy for global install
