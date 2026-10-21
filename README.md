@@ -17,7 +17,8 @@ mkdir -p ~/.config/opencode/plugins
 cp opencode-job-done/job-done.js ~/.config/opencode/plugins/job-done.js
 ```
 
-Quit and restart opencode.
+The background service picks the plugin up automatically. If it does not show
+up, run `opencode service restart`.
 
 ### Per-project
 
@@ -26,7 +27,7 @@ mkdir -p .opencode/plugins
 cp /path/to/opencode-job-done/job-done.js .opencode/plugins/job-done.js
 ```
 
-Restart opencode.
+Also picked up automatically by the background service.
 
 ## Customize
 
@@ -42,6 +43,8 @@ announcement are the `DONE` set (`session.execution.succeeded`,
 server event stream:
 
 ```js
+import { Plugin } from "@opencode/plugin"
+
 export default Plugin.define({
   id: "job-done-...",
   setup(ctx) {
